@@ -27,7 +27,7 @@
 /[Aa]ssets/Plugins/Editor/JetBrains*
 
 # Sprites
-/[Aa]ssets/Sprites
+/[Aa]ssets/Sprites/
 
 # Visual Studio cache directory
 .vs/
