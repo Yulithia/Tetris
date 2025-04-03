@@ -28,7 +28,7 @@
 
 # Sprites and Tilemaps
 /[Aa]ssets/Sprites/
-/[Aa]ssets/Sprites/Tiles
+/[Aa]ssets/Sprites/Tiles/
 
 # Visual Studio cache directory
 .vs/
