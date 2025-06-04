@@ -1,5 +1,7 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class Board : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class Board : MonoBehaviour
     public TetrominoData[] tetrominoes;
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(10, 20);
+    public int points = 0;
+    public int level = 0;
+    public int allClearedLines = 0;
+    public TextMeshProUGUI pointsText;
+    public TextMeshProUGUI levelText;
 
     public RectInt Bounds
     {
@@ -31,6 +38,12 @@ public class Board : MonoBehaviour
     private void Start()
     {
         SpawnPiece();
+    }
+
+    public void Update()
+    {
+        pointsText.text = "Points: " + points.ToString();
+        levelText.text = "Level: " + level.ToString();
     }
 
     public void SpawnPiece()
@@ -99,15 +112,50 @@ public class Board : MonoBehaviour
     {
         RectInt bounds = this.Bounds;
         int row = bounds.yMin;
+        int clearedLines = 0;
 
         while (row < bounds.yMax)
         {
             if (IsLineFull(row))
             {
                 LineClear(row);
+                allClearedLines++;
+                clearedLines++;
+                switch (clearedLines)
+                {
+                    case 1:
+                        if (level == 0)
+                            points += 100;
+                        else
+                            points += 100 * level;
+                        break;
+                    case 2:
+                        if (level == 0)
+                            points += 300;
+                        else
+                            points += 300 * level;
+                        break;
+                    case 3:
+                        if (level == 0)
+                            points += 500;
+                        else
+                            points += 500 * level;
+                        break;
+                    case 4:
+                        if (level == 0)
+                            points += 800;
+                        else
+                            points += 500 * level;
+                        break;
+                }
+
             }
             else
                 row++;
+        }
+        if (allClearedLines % 10 == 0 && allClearedLines > 0)
+        {
+            level++;
         }
     } 
 

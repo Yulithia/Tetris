@@ -59,6 +59,7 @@ public class Piece : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
              Move(Vector2Int.down);
+            board.points++;
         }
 
         if(Input.GetKeyDown(KeyCode.Space))
@@ -99,6 +100,7 @@ public class Piece : MonoBehaviour
         {
             continue;
         }
+        board.points += 2;
 
         Lock();
     }
